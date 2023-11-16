@@ -12,33 +12,97 @@
 
  :root {
   /* colors */
-  --link-color: #035fe6;
+  --color-base-primary: #282b3e;
+  --color-base-secondary: #dc5a44;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-green: #008000;
+  --color-red: #f00;
+  --color-blue: #00f;
+  --color-cyan: #07857d;
+  --color-lotion: #fafafa;
+  --color-fire-opal: #ec6453;
+  --color-dark-gunmetal: #202336;
+  --color-medium-blue: #0000c1;
+  --color-bright-gray: #eee;
+  --color-brighter-grey: #ededed;
+  --color-cool-gray: #8e90a2;
+  --color-light-gray: #787a86;
+  --color-gray15: #262626;
+  --color-charcoal: #34384b;
+  --color-jade: #00a758;
+  --color-dark-green: #1a1c28;
+  --color-crayola: #2f3246;
+  --color-orange: #ffa500;
+  --color-burgundy: #34384A;
+  --color-comet: #5e6073;
+  --color-white-smoke: #f5f5f5;
+
+  --link-color: var(--text-color);
   --link-hover-color: #136ff6;
-  --background-color: #fff;
+
+
+  /* Theme color variables */
+  
+  --background-color: var(--color-white);
+  --background-color-green: #00A758;
+
+  /** from POC **/
+  --background-color-mob: var(--color-charcoal);
+  --overlay-background-color: var(--color-bright-gray);
+  --link-color-secondary: var(--color-fire-opal);
+  --icon-color-dark: var(-color-dark-gunmetal);
+  --nav-logo-color: var(--color-jade);
+  --nav-bg-mobile: var(--color-dark-green);
+  --nav-bg: var(--color-crayola);
+  --border-color: var(--color-brighter-grey);
+  --footer-social-border-color: var(--color-charcoal);
+  --footer-mobile-bg-color: var(--color-burgundy);
+  --tile-shadow-color: #0003;
+  --cta-button-bg-color: #DF2F1B;
   --overlay-background-color: #eee;
-  --highlight-background-color: #ccc;
-  --text-color: #000;
+  --highlight-background-color: var(--color-lotion);
+  --text-color:#282B3E;
+  --text-color-secondary: #FFFFFF;
+
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback;
+  --body-font-family: 'Manulife JH Sans', sans-serif;
+  --font-family-body: 'Manulife JH Sans', sans-serif;
+  --font-family-style: 'Manulife JH Serif', serif;
+  --font-family-txticon: 'Manulife JH Sans', static-icons, sans-serif;
+  --font-family-icon: manulife-icons, sans-serif;
+
   --heading-font-family: var(--body-font-family);
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
+
 
   /* body sizes */
   --body-font-size-m: 22px;
   --body-font-size-s: 18px;
   --body-font-size-xs: 16px;
+  --body-font-size-xxs: 14px;
+  --body-font-size-smallest: 10px;
 
   /* heading sizes */
   --heading-font-size-xxl: 48px;
   --heading-font-size-xl: 40px;
   --heading-font-size-l: 32px;
-  --heading-font-size-m: 24px;
+  --heading-font-size-m: 26px;
   --heading-font-size-s: 20px;
   --heading-font-size-xs: 18px;
+  --heading-font-size-xxs: 16px;
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 0px;
+
+  /* font weights */
+  --font-weight-thin: 200;
+  --font-weight-regular: 300;
+  --font-weight-bold: 400;
+  --font-weight-bolder: 600;
+  --font-weight-boldest: 700;
+  --font-weight-heavy: 900;
 
 }
 
@@ -62,7 +126,7 @@
 }
 
 body {
-  font-size: var(--body-font-size-m);
+  font-size: var(--body-font-size-xs);
   margin: 0;
   font-family: var(--body-font-family);
   line-height: 1.6;
@@ -82,16 +146,16 @@ header {
 h1, h2, h3,
 h4, h5, h6 {
   font-family: var(--heading-font-family);
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1.25;
   margin-top: 1em;
   margin-bottom: .5em;
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-h1 { font-size: var(--heading-font-size-xxl) }
-h2 { font-size: var(--heading-font-size-xl) }
-h3 { font-size: var(--heading-font-size-l) }
+h1 { font-size: var(--heading-font-size-l) }
+h2 { font-size: var(--heading-font-size-m) }
+h3 { font-size: var(--heading-font-size-m) }
 h4 { font-size: var(--heading-font-size-m) }
 h5 { font-size: var(--heading-font-size-s) }
 h6 { font-size: var(--heading-font-size-xs) }
@@ -99,6 +163,10 @@ h6 { font-size: var(--heading-font-size-xs) }
 p, dl, ol, ul, pre, blockquote {
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+strong {
+  font-weight: 600;
 }
 
 hr {
@@ -134,13 +202,23 @@ a:any-link {
   text-decoration: none;
 }
 
+a:before {
+  content: "";
+  display: block;
+  background: url("/icons/circlepink.svg") no-repeat;
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin: 0 6px 0 0;
+}
+
 a:hover {
   text-decoration: underline;
   color: var(--link-hover-color);
 }
 
 /* buttons */
-a.button:any-link, button {
+/* a.button:any-link, button {
   font-family: var(--body-font-family);
   display: inline-block;
   box-sizing: border-box;
@@ -174,7 +252,7 @@ a.button.secondary, button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
   color: var(--text-color)
-}
+} */
 
 main input {
   font-size: 1.25rem;
@@ -229,23 +307,52 @@ main img {
 }
 
 main .section {
-  padding: 64px 16px;
+  padding: 20px 20px;
 }
 
 @media (min-width: 600px) {
   main .section {
-    padding: 64px 32px;
+    padding: 20px 20px;
   }
 }
 
 @media (min-width: 900px) {
   .section > div {
-    max-width: 1200px;
-    margin: auto;
+    /* max-width: 1200px; */
+    margin: auto 20px;
+  }
+
+  .section.contest-form {
+    display: flex;
+    padding: 20px;
+  }
+
+  .section.contest-form > div {
+    border: 1px solid var(--color-brighter-grey);
+    margin: 20px 20px;
+  }
+  .section.contest-form > .default-content-wrapper {
+    width: 100%;
+    padding: 20px;
+    background-color: var(--background-color);
+
   }
 }
 
 /* section metadata */
 main .section.highlight {
   background-color: var(--highlight-background-color);
+}
+
+main .section.green {
+  background-color: var(--background-color-green);
+  color: var(--text-color-secondary);
+}
+
+main .section.green a {
+  color: var(--text-color-secondary);
+}
+
+main .section.green a:before {
+  background: url("/icons/link.svg") no-repeat;
 }

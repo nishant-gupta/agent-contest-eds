@@ -1,0 +1,67 @@
+main .rewards div {
+    padding: 20px 10px;
+    display: flex;
+}
+
+main .rewards div div {
+    height: 52px;
+    top: 30px;
+    display: block;
+    /* position: relative; */
+    
+}
+
+main .rewards div div:first-child {
+    width: 60px;
+    height: 60px;
+    left: 20px;
+}
+
+main .rewards div div:last-child {
+    width: calc(100% - 80px);
+    height: 52px;
+    left: 100px;
+    display: block;
+}
+
+main .rewards .icon {
+    height: 60px;
+    width: 60px;
+}
+
+main .rewards div div.button-container {
+    padding-bottom: 0px;
+    padding-top: 0px;
+    height: auto;
+}
+
+@media (min-width: 900px) {
+
+    main .rewards {
+        width: 100%;
+        display: flex;
+        column-gap: 30px;
+    }
+    
+    main .rewards > div {
+        border: 1px solid var(--color-brighter-grey);
+        background-color: var(--background-color);
+        width: 100%;
+
+    }
+
+    main .rewards div > div {
+        border: 0px;
+        flex-grow: 1;
+    }
+
+    main .rewards div:last-child {
+        display: none;
+    }
+  }
+
+@media (max-width: 900px) {
+    main .rewards {
+        background-color: var(--background-color);
+    }
+}

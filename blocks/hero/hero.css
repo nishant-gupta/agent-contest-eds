@@ -1,5 +1,9 @@
 /* block specific CSS goes here */
 
+/* body.contest-detail main .hero-container {
+  background-color: var(--background-color-green);
+} */
+
 main .hero-container > div {
   max-width: unset;
 }
