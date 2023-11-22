@@ -30,6 +30,12 @@ function buildHeroBlock(main) {
   }
 }
 
+function buildBackBlock(main) {
+  const section = document.createElement('div');
+  section.append(buildBlock('back', { elems: [] }));
+  main.prepend(section);
+}
+
 /**
  * load fonts.css and set a session storage flag
  */
@@ -48,7 +54,8 @@ async function loadFonts() {
  */
 function buildAutoBlocks(main) {
   try {
-    buildHeroBlock(main);
+    console.log('Auto Blocking', main);
+    buildBackBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -62,6 +69,7 @@ function buildAutoBlocks(main) {
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
+  
   decorateButtons(main);
   decorateIcons(main);
   buildAutoBlocks(main);
@@ -105,8 +113,8 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector('header'));
-  loadFooter(doc.querySelector('footer'));
+  // loadHeader(doc.querySelector('header'));
+  // loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
